@@ -374,16 +374,24 @@ export default function Home() {
           margin-bottom: 14px;
         }
         .price-duo {
-          display: grid;
-          grid-template-columns: 1fr 1px 1fr;
+          display: flex;
+          align-items: stretch;
           gap: 0;
-          align-items: center;
           margin-bottom: 14px;
+          overflow: hidden;
         }
-        .price-col { padding: 0 12px; }
-        .price-col:first-child { padding-left: 0; }
-        .price-col:last-child { padding-right: 0; }
-        .price-divider { background: var(--border); height: 44px; width: 1px; }
+        .price-col {
+          flex: 1 1 0;
+          min-width: 0;
+          padding: 0 14px 0 0;
+        }
+        .price-col:last-child { padding: 0 0 0 14px; }
+        .price-divider {
+          flex-shrink: 0;
+          width: 1px;
+          background: var(--border);
+          align-self: stretch;
+        }
         .p-label {
           font-size: 9px;
           font-weight: 600;
@@ -393,22 +401,25 @@ export default function Home() {
           margin-bottom: 4px;
         }
         .p-monthly {
-          font-size: 34px;
+          font-size: clamp(24px, 4vw, 34px);
           font-weight: 800;
           color: var(--mango);
           line-height: 1;
           letter-spacing: -0.02em;
           white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
-        .p-monthly sup { font-size: 16px; font-weight: 600; vertical-align: super; }
         .p-monthly span { font-size: 13px; font-weight: 400; color: var(--muted); }
         .p-annual {
-          font-size: 22px;
+          font-size: clamp(18px, 3vw, 22px);
           font-weight: 700;
           color: var(--text2);
           line-height: 1;
           letter-spacing: -0.01em;
           white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         .p-annual span { font-size: 12px; font-weight: 400; color: var(--muted); }
         .price-math {
@@ -580,11 +591,8 @@ export default function Home() {
           .container { padding: 0 16px 60px; }
           .cards { grid-template-columns: 1fr; }
           .card { padding: 22px; }
-          .price-duo { grid-template-columns: 1fr; gap: 12px; }
-          .price-divider { display: none; }
-          .price-col { padding: 0 !important; }
-          .p-monthly { font-size: 30px; }
-          .p-annual { font-size: 20px; }
+          .p-monthly { font-size: 26px; }
+          .p-annual { font-size: 18px; }
           .section-header { padding: 44px 0 32px; }
         }
 
