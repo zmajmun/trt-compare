@@ -375,22 +375,20 @@ export default function Home() {
         }
         .price-duo {
           display: flex;
-          align-items: stretch;
-          gap: 0;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
           margin-bottom: 14px;
-          overflow: hidden;
         }
-        .price-col {
-          flex: 1 1 0;
-          min-width: 0;
-          padding: 0 14px 0 0;
+        .price-col-mo { flex: 0 0 auto; }
+        .price-col-yr {
+          flex: 0 0 auto;
+          text-align: right;
         }
-        .price-col:last-child { padding: 0 0 0 14px; }
         .price-divider {
-          flex-shrink: 0;
-          width: 1px;
+          flex: 1 1 auto;
+          height: 1px;
           background: var(--border);
-          align-self: stretch;
         }
         .p-label {
           font-size: 9px;
@@ -401,25 +399,19 @@ export default function Home() {
           margin-bottom: 4px;
         }
         .p-monthly {
-          font-size: clamp(24px, 4vw, 34px);
+          font-size: 30px;
           font-weight: 800;
           color: var(--mango);
           line-height: 1;
           letter-spacing: -0.02em;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
         }
         .p-monthly span { font-size: 13px; font-weight: 400; color: var(--muted); }
         .p-annual {
-          font-size: clamp(18px, 3vw, 22px);
+          font-size: 20px;
           font-weight: 700;
           color: var(--text2);
           line-height: 1;
           letter-spacing: -0.01em;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
         }
         .p-annual span { font-size: 12px; font-weight: 400; color: var(--muted); }
         .price-math {
@@ -591,8 +583,8 @@ export default function Home() {
           .container { padding: 0 16px 60px; }
           .cards { grid-template-columns: 1fr; }
           .card { padding: 22px; }
-          .p-monthly { font-size: 26px; }
-          .p-annual { font-size: 18px; }
+          .p-monthly { font-size: 24px; }
+          .p-annual { font-size: 17px; }
           .section-header { padding: 44px 0 32px; }
         }
 
@@ -745,12 +737,12 @@ function ProviderCard({ p, index, total }) {
       <div className="price-block">
         <div className="pb-label">True all-in cost (amortized)</div>
         <div className="price-duo">
-          <div className="price-col">
+          <div className="price-col-mo">
             <div className="p-label">Per month</div>
             <div className="p-monthly">{p.trueMonthlyDisplay}<span>/mo</span></div>
           </div>
           <div className="price-divider"></div>
-          <div className="price-col">
+          <div className="price-col-yr">
             <div className="p-label">Per year</div>
             <div className="p-annual">${p.annualTotal.toLocaleString()}<span>/yr</span></div>
           </div>
