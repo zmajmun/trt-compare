@@ -1,0 +1,22 @@
+name: Daily Pricing Check
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # 8:00 AM UTC daily
+  workflow_dispatch:      # allow manual trigger from GitHub UI
+
+jobs:
+  check-pricing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger pricing verification
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            https://trt-compare.vercel.app/api/cron)
+          echo "Response code: $response"
+          if [ "$response" != "200" ]; then
+            echo "Cron job returned non-200: $response"
+            exit 1
+          fi
+          echo "Pricing check completed successfully"
